@@ -1,4 +1,6 @@
-﻿namespace CalculatorApp;
+﻿using CalculatorApp.src;
+
+namespace CalculatorApp;
 
 internal class Program
 {
@@ -17,7 +19,7 @@ internal class Program
         do
         {
             secondNumber = UiOptions.AskForUserInput("second");
-        } while (!Validation.IsNumber(secondNumber)) ;
+        } while (!Validation.IsNumber(secondNumber));
 
         do
         {

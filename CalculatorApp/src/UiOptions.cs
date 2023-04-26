@@ -1,4 +1,4 @@
-﻿namespace CalculatorApp
+﻿namespace CalculatorApp.src
 {
     internal class UiOptions
     {
