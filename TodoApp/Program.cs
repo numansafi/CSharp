@@ -1,99 +1,45 @@
-﻿namespace TodoApp;
+﻿using TodoApp.Src;
+
+namespace TodoApp;
 
 internal class Program
 {
-    static void Main(string[] args)
+    public static void Main()
     {
-        string? userChoice;
+        var todoList = new List<string?>();
+        var shouldExit = false;
 
-        List<string> todoList = new List<string>();
-
-        do
+        while (!shouldExit)
         {
-            UserInterface.ShowMenu();
-            userChoice = Console.ReadLine().ToUpper();
-
-            switch (userChoice)
+            string? userChoice;
+            do
             {
-                case "S":
-                    TodoCommands.SeeAllTodoItems(todoList);
-                    break;
-                case "A":
-                    string item = TodoCommands.GetTodoItem();
-                    TodoCommands.AddTodoItem(item, todoList);
-                    break;
-                case "R":
-                case "E":
-                    break;
-            }
-        } while (!Validation.IsUserChoiceValid(userChoice));
+                UserInterface.ShowMenu();
+                userChoice = Console.ReadLine()?.ToUpper();
 
-
-    }
-
-}
-
-class UserInterface
-{
-    public static void ShowMenu()
-    {
-        Console.WriteLine("Hello, There!");
-        Console.WriteLine("Please Select one of the options below: ");
-        Console.WriteLine("[S]ee all Todo items");
-        Console.WriteLine("[A]dd a Todo item");
-        Console.WriteLine("[R]emove a Todo item");
-        Console.WriteLine("[E]xit");
-    }
-}
-
-class Validation
-{
-    public static bool IsUserChoiceValid(string userChoice)
-    {
-        string[] menuButtons = { "S", "A", "R", "E" };
-
-        if (userChoice.Length == 1 && menuButtons.Contains(userChoice))
-        {
-            return true;
+                switch (userChoice)
+                {
+                    case "S":
+                        TodoCommands.SeeAllTodoItems(todoList);
+                        break;
+                    case "A":
+                        string? item = TodoCommands.AskUserForTodoItem();
+                        TodoCommands.AddTodoItem(item, todoList);
+                        break;
+                    case "R":
+                        TodoCommands.RemoveTodoItem(todoList);
+                        break;
+                    case "E":
+                        shouldExit = true;
+                        Console.WriteLine("Exiting");
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Choice\n");
+                        break;
+                }
+            } while (userChoice != null && !Validation.IsUserChoiceValid(userChoice));
         }
 
-        Console.WriteLine("Invalid Choice\n");
-        return false;
-    }
-}
-
-class TodoCommands
-{
-    public static string GetTodoItem()
-    {
-        string userTodoItem;
-
-        do
-        {
-            Console.WriteLine("Enter the TODO item Description");
-            userTodoItem = Console.ReadLine();
-        } while (string.IsNullOrEmpty(userTodoItem));
-
-        return userTodoItem;
-
-        
-    }
-    public static void AddTodoItem(string itemToAdd, List<string> TodoList)
-    {
-        if (TodoList.Contains(itemToAdd))
-        {
-            Console.WriteLine("Todo description must be unique!");
-            return;
-        }
-
-        TodoList.Add(itemToAdd);
     }
 
-    public static void SeeAllTodoItems(List<string> todoList)
-    {
-        for (int i = 0; i < todoList.Count; i++)
-        {
-            Console.WriteLine($"{i + 1}.{todoList[i]}");
-        }
-    }
 }
