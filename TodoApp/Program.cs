@@ -23,8 +23,7 @@ internal class Program
                         TodoCommands.SeeAllTodoItems(todoList);
                         break;
                     case "A":
-                        string? item = TodoCommands.AskUserForTodoItem();
-                        TodoCommands.AddTodoItem(item, todoList);
+                        TodoCommands.AddTodoItem(todoList);
                         break;
                     case "R":
                         TodoCommands.RemoveTodoItem(todoList);

@@ -2,36 +2,16 @@
 
 class TodoCommands
 {
-    public static string? AskUserForTodoItem()
+    public static void AddTodoItem(List<string?> todoList)
     {
-        string? userTodoItem = null;
-        var isDescriptionEmpty = true;
-
-        while (isDescriptionEmpty)
+        string? description;
+        do
         {
             Console.Write("Enter Todo item Description: ");
-            userTodoItem = Console.ReadLine();
+            description = Console.ReadLine();
+        } while (!Validation.IsDescriptionValid(description, todoList));
 
-            if (string.IsNullOrEmpty(userTodoItem))
-            {
-                Console.WriteLine("The description cannot be empty!");
-                continue;
-            }
-            isDescriptionEmpty = false;
-        }
-
-        return userTodoItem;
-    }
-
-    public static void AddTodoItem(string? itemToAdd, List<string?> todoList)
-    {
-        while (todoList.Contains(itemToAdd))
-        {
-            Console.WriteLine("Todo description must be unique!");
-            itemToAdd = AskUserForTodoItem();
-        }
-
-        todoList.Add(itemToAdd);
+        todoList.Add(description);
     }
 
     public static void SeeAllTodoItems(List<string?> todoList)
@@ -49,32 +29,15 @@ class TodoCommands
 
     public static void RemoveTodoItem(List<string?> todoList)
     {
+        string? userInput;
         var index = 0;
-        var isIndexValid = false;
-
-        while (!isIndexValid)
+        do
         {
             SeeAllTodoItems(todoList);
             Console.Write("Select the index of the Todo item you want to remove: ");
-            var userTodoItem = Console.ReadLine();
-
-            if (string.IsNullOrEmpty(userTodoItem))
-            {
-                Console.WriteLine("Selected Index cannot be empty");
-            }
-            else if (!int.TryParse(userTodoItem, out index))
-            {
-                Console.WriteLine("Selected Index must be a number");
-            }
-            else if (index <= 0 || (index > todoList.Count))
-            {
-                Console.WriteLine("The given index is out of range");
-            }
-            else
-            {
-                isIndexValid = true;
-            }
-        }
+            userInput = Console.ReadLine();
+        } while (!Validation.IsIndexValid(userInput, todoList, out index)
+);
 
         Console.WriteLine("Todo Item being deleted......");
         todoList.RemoveAt(index - 1);
