@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculatorApp", "Calculator
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApp", "TodoApp\TodoApp.csproj", "{B47B1ECF-4914-4DCC-94B6-BE99B21E56E4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Fundamentals", "1.Fundamentals", "{24821837-75AE-4B40-9997-F882E01CAD16}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{3713FC22-B2EF-4253-BE1D-3F781E63A064}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{174C8D97-EDDC-4AD7-A4AE-C745CEBA7191} = {24821837-75AE-4B40-9997-F882E01CAD16}
+		{23547BC0-44A8-48DA-B4E7-6612278239CE} = {24821837-75AE-4B40-9997-F882E01CAD16}
+		{B47B1ECF-4914-4DCC-94B6-BE99B21E56E4} = {24821837-75AE-4B40-9997-F882E01CAD16}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E8DC3BAA-0EF2-45DE-BAF0-5B4E0BA0628E}
 	EndGlobalSection
 EndGlobal
