@@ -14,6 +14,8 @@
     }
 }
 
+
+
 class MedicalAppointment
 {
     private string _patientName;
@@ -53,13 +55,9 @@ class Rectangle
         Height = height;
     }
 
-    public int CalculateCircumference()
-    {
-        return (2 * Width) + (2 * Height);
-    }
+    public int CalculateCircumference() => (2 * Width) + (2 * Height);
+    
 
-    public int CalculateArea()
-    {
-        return Width * Height;
-    }
+    public int CalculateArea() => Width * Height;
+    
 }
