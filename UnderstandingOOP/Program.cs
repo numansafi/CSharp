@@ -8,13 +8,31 @@
             Console.WriteLine(rectangle.CalculateArea());
             Console.WriteLine(rectangle.CalculateCircumference());
 
+            var person = new Person("Numan Safi", 1996);
+
+            var person1 = new Person
+            {
+                Name = "Numan",
+                YearOfBirth = 1996
+            };
 
 
         }
     }
 }
 
+class Person
+{
+    public string Name { get; set; }
+    public int YearOfBirth { get; init; }
 
+    // public Person(string name, int yearOfBirth)
+    // {
+    //     Name = name;
+    //     YearOfBirth = yearOfBirth;
+    // }
+
+}
 
 class MedicalAppointment
 {
@@ -46,13 +64,39 @@ class MedicalAppointment
 }
 class Rectangle
 {
+    private const int NumberOfSides = 4;
     public int Width { get; }
     public int Height { get; }
 
+    public DateTime Date
+    {
+        get => Date;
+        set
+        {
+            if (DateTime.Now.Year != value.Day)
+            {
+                Date = value;
+            }
+        }
+    }
+
     public Rectangle(int width, int height)
     {
-        Width = width;
-        Height = height;
+        Width = GetLengthOrDefault(width, nameof(Width));
+        Height = GetLengthOrDefault(width, nameof(Height));
+    }
+
+    private int GetLengthOrDefault(int length, string name)
+    {
+        const int DefaultValueIfNonPositive = 1;
+
+        if (length <= 0)
+        {
+            Console.WriteLine($"{name} must be a positive number");
+            length = DefaultValueIfNonPositive;
+        }
+
+        return length;
     }
 
     public int CalculateCircumference() => (2 * Width) + (2 * Height);
