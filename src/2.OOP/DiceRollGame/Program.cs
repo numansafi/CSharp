@@ -1,21 +1,16 @@
-﻿namespace DiceRollGame;
+﻿using DiceRollGame.Game;
+using DiceRollGame.UserCommunication;
+
+namespace DiceRollGame;
 public class Program
 { 
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        var random = new Random();
+        var dice = new Dice(random);
+        var consoleReader = new ConsoleReader();
+        var guessingGame = new GuessingGame(dice, consoleReader);
+        var gameResult = guessingGame.Play();
+        guessingGame.PrintResults(gameResult);
     }
-}
-
-public class Dice
-{
-    private readonly Random _random;
-    private const int NumberOfSides = 6;
-
-    public Dice(Random random)
-    {
-        _random = random;
-    }
-
-    public int Roll() => _random.Next(1, NumberOfSides + 1);
 }
